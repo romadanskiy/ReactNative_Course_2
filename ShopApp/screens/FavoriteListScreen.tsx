@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, StatusBar, Platform } from 'react-native';
+import { StyleSheet, Text, View, StatusBar, Platform, Button } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { observer } from 'mobx-react-lite'
 
@@ -18,6 +18,9 @@ const FavoriteListScreen = observer(() => {
   return (
     <View style={styles.container}>
       <Text>Favorite List</Text>
+      <Button
+        title="Go to Product"
+        onPress={() => navigation.navigate("Product", { id: 0 })} />
     </View >
   );
 });
@@ -27,10 +30,5 @@ export default FavoriteListScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    ...Platform.select({
-      android: {
-        marginTop: StatusBar.currentHeight,
-      },
-    }),
   },
 });

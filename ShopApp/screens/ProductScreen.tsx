@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, StatusBar, Platform } from 'react-native';
+import { StyleSheet, Text, View, StatusBar, Platform, Button } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { observer } from 'mobx-react-lite'
 
@@ -23,6 +23,10 @@ const ProductScreen = observer(() => {
   return (
     <View style={styles.container}>
       <Text>Product</Text>
+
+      <Button
+        title="Go back"
+        onPress={() => navigation.goBack()} />
     </View >
   );
 });
@@ -32,10 +36,5 @@ export default ProductScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    ...Platform.select({
-      android: {
-        marginTop: StatusBar.currentHeight,
-      },
-    }),
   },
 });
