@@ -7,7 +7,6 @@ const rootStore = new RootStore();
 export const stores = Object.freeze({
   rootStore: rootStore,
   cartStore: rootStore.cartStore,
-  favoriteStore: rootStore.favoriteStore,
   productStore: rootStore.productStore,
 });
 

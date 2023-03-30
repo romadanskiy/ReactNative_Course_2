@@ -1,5 +1,6 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { observer } from 'mobx-react-lite'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {
@@ -7,6 +8,7 @@ import {
   FavoriteListStackNavigator,
   ProductListStackNavigator
 } from "./StackNavigator";
+import { useStore } from '../stores/StoreHooks';
 
 const Tab = createBottomTabNavigator();
 
@@ -20,9 +22,16 @@ const getTabIcon = (name: string, focused: boolean, color: string, size: number)
 const screenOptionStyle = {
   headerShown: false,
   tabBarLabel: () => null,
+  tabBarActiveTintColor: '#8a1041',
+  tabBarBadgeStyle: {
+    backgroundColor: '#0b0d9d'
+  },
 };
 
-const BottomTabNavigator = () => {
+const BottomTabNavigator = observer(() => {
+  const cartStore = useStore('cartStore');
+  const productInCartCount = cartStore.totalCount();
+
   return (
     <Tab.Navigator screenOptions={screenOptionStyle}>
       <Tab.Screen
@@ -44,9 +53,10 @@ const BottomTabNavigator = () => {
         component={CartStackNavigator}
         options={{
           tabBarIcon: ({ focused, color, size }) => getTabIcon("cart", focused, color, size),
+          tabBarBadge: productInCartCount > 0 ? productInCartCount : undefined,
         }} />
     </Tab.Navigator>
   );
-};
+});
 
 export default BottomTabNavigator;
