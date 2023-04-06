@@ -2,11 +2,11 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { observer } from 'mobx-react-lite'
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 import RootStackParamList from './RootStackParamList';
+import IconComponent from '../components/IconComponent';
 import ProductListComponent from '../components/ProductListComponent';
 import { useStore } from '../stores/StoreHooks';
 
@@ -44,7 +44,7 @@ const FavoriteListScreen = observer(() => {
           <Text style={styles.emptyListHeader}>No Favorites Yet</Text>
 
           <Text style={styles.emptyListSubheader}>
-            You can add a product to your favorites by clicking <Icon name='heart-outline' color={'#8a1041'} size={22} /> icon
+            You can add a product to your favorites by clicking <IconComponent name='heart' size={22} color={'#8a1041'} isOutline={true} /> icon
           </Text>
         </View>
       }

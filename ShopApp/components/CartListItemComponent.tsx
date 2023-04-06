@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, Text, View, Image } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
+import IconComponent from './IconComponent';
 import productImages from '../images/images';
 import ICountedProduct from '../models/ICountedProduct';
 
@@ -14,12 +14,6 @@ interface CartListItemComponentProps {
 }
 
 export default function ProductListItemComponent({ countedProduct, onPress, onBinPress, onMinusPress, onPlusPress }: CartListItemComponentProps) {
-  const getIcon = (name: string) => {
-    return (
-      <Icon name={name} size={25} />
-    );
-  }
-
   const round = (num: number) => {
     return num.toFixed(2);
   }
@@ -42,7 +36,7 @@ export default function ProductListItemComponent({ countedProduct, onPress, onBi
             <View style={styles.centredRow}>
               <TouchableOpacity
                 onPress={() => onMinusPress(countedProduct.product.id)}>
-                {getIcon('minus')}
+                <IconComponent name='minus' size={25} />
               </TouchableOpacity>
 
               <View style={styles.productCountContainer}>
@@ -51,7 +45,7 @@ export default function ProductListItemComponent({ countedProduct, onPress, onBi
 
               <TouchableOpacity
                 onPress={() => onPlusPress(countedProduct.product.id)}>
-                {getIcon('plus')}
+                <IconComponent name='plus' size={25} />
               </TouchableOpacity>
             </View>
           </View>
@@ -61,7 +55,7 @@ export default function ProductListItemComponent({ countedProduct, onPress, onBi
           <TouchableOpacity
             style={styles.removeFromCartButton}
             onPress={() => onBinPress(countedProduct.product.id)}>
-            {getIcon('trash-can-outline')}
+            <IconComponent name='trash-can' size={25} isOutline={true} />
           </TouchableOpacity>
         </View>
       </View>

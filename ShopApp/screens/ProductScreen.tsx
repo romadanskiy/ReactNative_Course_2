@@ -2,12 +2,12 @@ import React from 'react';
 import { StyleSheet, View, TouchableOpacity } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { observer } from 'mobx-react-lite'
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import type { RouteProp } from '@react-navigation/native';
 
 import RootStackParamList from './RootStackParamList';
+import IconComponent from '../components/IconComponent';
 import NotFoundProductComponent from '../components/NotFoundProductComponent';
 import ProductComponent from '../components/ProductComponent';
 import { useStore } from '../stores/StoreHooks';
@@ -37,13 +37,6 @@ const ProductScreen = observer(() => {
       cartStore.removeProductFromCart(id);
   }
 
-  const getIcon = (name: string, focused: boolean) => {
-    let iconName = focused ? name : name + "-outline";
-    return (
-      <Icon name={iconName} color={'#8a1041'} size={25} />
-    );
-  }
-
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => {
@@ -53,12 +46,12 @@ const ProductScreen = observer(() => {
               <TouchableOpacity
                 style={styles.heartButton}
                 onPress={() => changeProductIsFavorite(product.id, !product.isFavorite)}>
-                {getIcon('heart', product.isFavorite)}
+                <IconComponent name='heart' size={25} color={'#8a1041'} isOutline={!product.isFavorite} />
               </TouchableOpacity>
 
               <TouchableOpacity
                 onPress={() => changeProductIsInCart(product.id, !product.isInCart)}>
-                {getIcon('cart', product.isInCart)}
+                <IconComponent name='cart' size={25} color={'#8a1041'} isOutline={!product.isInCart} />
               </TouchableOpacity>
             </View>
           )

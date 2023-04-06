@@ -2,12 +2,12 @@ import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { observer } from 'mobx-react-lite'
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 import RootStackParamList from './RootStackParamList';
 import CartListComponent from '../components/CartListComponent';
+import IconComponent from '../components/IconComponent';
 import { useStore } from '../stores/StoreHooks';
 
 type NavigationProp = NativeStackNavigationProp<RootStackParamList, 'Cart'>;
@@ -49,7 +49,7 @@ const CartScreen = observer(() => {
           <Text style={styles.emptyCartHeader}>Cart Is Empty</Text>
 
           <Text style={styles.emptyCartSubheader}>
-            You can add a product to your cart by clicking <Icon name='cart-outline' color={'#8a1041'} size={22} /> icon
+            You can add a product to your cart by clicking <IconComponent name='cart' size={22} color={'#8a1041'} isOutline={true} /> icon
           </Text>
         </View>
       }

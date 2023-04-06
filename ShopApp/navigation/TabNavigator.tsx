@@ -1,23 +1,12 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { observer } from 'mobx-react-lite'
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import {
-  CartStackNavigator,
-  FavoriteListStackNavigator,
-  ProductListStackNavigator
-} from "./StackNavigator";
+import { CartStackNavigator, FavoriteListStackNavigator, ProductListStackNavigator } from "./StackNavigator";
+import IconComponent from "../components/IconComponent";
 import { useStore } from '../stores/StoreHooks';
 
 const Tab = createBottomTabNavigator();
-
-const getTabIcon = (name: string, focused: boolean, color: string, size: number) => {
-  let iconName = focused ? name : name + "-outline";
-  return (
-    <Icon name={iconName} color={color} size={size} />
-  );
-}
 
 const screenOptionStyle = {
   headerShown: false,
@@ -38,21 +27,21 @@ const BottomTabNavigator = observer(() => {
         name="ProductListTab"
         component={ProductListStackNavigator}
         options={{
-          tabBarIcon: ({ focused, color, size }) => getTabIcon("home", focused, color, size),
+          tabBarIcon: ({ focused, color, size }) => (<IconComponent name='home' size={size} color={color} isOutline={!focused} />),
         }} />
 
       <Tab.Screen
         name="FavoriteListTab"
         component={FavoriteListStackNavigator}
         options={{
-          tabBarIcon: ({ focused, color, size }) => getTabIcon("heart", focused, color, size),
+          tabBarIcon: ({ focused, color, size }) => (<IconComponent name='heart' size={size} color={color} isOutline={!focused} />),
         }} />
 
       <Tab.Screen
         name="CartTab"
         component={CartStackNavigator}
         options={{
-          tabBarIcon: ({ focused, color, size }) => getTabIcon("cart", focused, color, size),
+          tabBarIcon: ({ focused, color, size }) => (<IconComponent name='cart' size={size} color={color} isOutline={!focused} />),
           tabBarBadge: productInCartCount > 0 ? productInCartCount : undefined,
         }} />
     </Tab.Navigator>

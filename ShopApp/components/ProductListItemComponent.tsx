@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, Text, View, Image } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
+import IconComponent from './IconComponent';
 import productImages from '../images/images';
 import IProduct from '../models/IProduct';
 
@@ -13,13 +13,6 @@ interface ProductListItemComponentProps {
 }
 
 export default function ProductListItemComponent({ product, onPress, onHeartPress, onCartPress }: ProductListItemComponentProps) {
-  const getIcon = (name: string, focused: boolean) => {
-    let iconName = focused ? name : name + "-outline";
-    return (
-      <Icon name={iconName} color={'#8a1041'} size={25} />
-    );
-  }
-
   return (
     <TouchableOpacity
       style={styles.productListItem}
@@ -37,12 +30,12 @@ export default function ProductListItemComponent({ product, onPress, onHeartPres
 
             <TouchableOpacity style={styles.heartButton}
               onPress={() => onHeartPress(product.id, !product.isFavorite)}>
-              {getIcon('heart', product.isFavorite)}
+              <IconComponent name='heart' size={25} color='#8a1041' isOutline={!product.isFavorite} />
             </TouchableOpacity>
 
             <TouchableOpacity
               onPress={() => onCartPress(product.id, !product.isInCart)}>
-              {getIcon('cart', product.isInCart)}
+              <IconComponent name='cart' size={25} color='#8a1041' isOutline={!product.isInCart} />
             </TouchableOpacity>
           </View>
         </View>
